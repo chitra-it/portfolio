@@ -1,51 +1,368 @@
 <!doctype html>
-
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Chitra Shree K — Portfolio</title>
-  <meta name="description" content="Portfolio of Chitra Shree K — BCA Student. Projects: Typing Club Web Clone. Skills: HTML, CSS, JavaScript, Python" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <title>Chitra Shree K - Portfolio</title>
+  <meta name="description" content="Portfolio of Chitra Shree K - BCA Student. Projects: Typing Club Web Clone. Skills: HTML, CSS, JavaScript, Python" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
   <style>
-    :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --muted:#9aa4b2;
-      --accent:#6ee7b7;
-      --glass: rgba(255,255,255,0.03);
-      --maxw:1100px;
-      color-scheme: dark;
+    :root {
+      --bg: #03050a;
+      --ink: #e6eefc;
+      --muted: #a5b4cf;
+      --card: rgba(11, 16, 26, 0.78);
+      --stroke: rgba(128, 162, 255, 0.2);
+      --brand: #31a6ff;
+      --brand-strong: #5fc2ff;
+      --maxw: 1120px;
+      --hero-grad: radial-gradient(circle at 16% 18%, rgba(41, 121, 255, 0.42), transparent 42%),
+                   radial-gradient(circle at 82% 10%, rgba(89, 172, 255, 0.24), transparent 38%),
+                   radial-gradient(circle at 60% 85%, rgba(12, 56, 128, 0.2), transparent 40%),
+                   linear-gradient(135deg, #02040b 0%, #040913 45%, #06162e 100%);
     }
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,'Helvetica Neue',Arial;color:#e6eef6;background:linear-gradient(180deg,#071027 0%, #071229 60%);}
-    .container{max-width:var(--maxw);margin:0 auto;padding:28px}
-    header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-bottom:18px}
-    .brand{display:flex;gap:12px;align-items:center}
-    .avatar{width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#8bd3ff);display:flex;align-items:center;justify-content:center;font-weight:700;color:#012;box-shadow:0 6px 18px rgba(3,6,23,0.6)}
-    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
-    nav a:hover{color:var(--accent)}.hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:start;margin-top:12px}
-.card{background:var(--card);border-radius:14px;padding:20px;box-shadow:0 6px 30px rgba(2,6,23,0.7)}
-h1{font-size:34px;letter-spacing:-0.5px}
-.lead{color:var(--muted);margin-top:8px}
-.btn{display:inline-block;padding:10px 14px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#8bd3ff);color:#012;font-weight:700;text-decoration:none}
-.btn-outline{background:transparent;color:var(--accent);border:1px solid rgba(255,255,255,0.1)}
 
-section{margin-top:32px}
-h2{font-size:22px;margin-bottom:16px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
-.project h3{margin-bottom:8px;font-size:18px}
-.project p{color:var(--muted);font-size:14px}
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
-.skills{display:flex;flex-wrap:wrap;gap:10px}
-.skill{padding:8px 10px;border-radius:999px;background:rgba(255,255,255,0.05);color:#fff;font-weight:600;font-size:13px}
+    html { scroll-behavior: smooth; }
 
-footer{margin:40px 0 20px;color:var(--muted);font-size:13px;text-align:center}
+    body {
+      font-family: Manrope, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--hero-grad);
+      background-size: 170% 170%;
+      min-height: 100vh;
+      line-height: 1.55;
+      overflow-x: hidden;
+      animation: bg-shift 14s ease-in-out infinite alternate;
+    }
 
-@media(max-width:820px){.hero{grid-template-columns:1fr}}
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 50% 0%, rgba(136, 196, 255, 0.14), transparent 45%),
+        linear-gradient(rgba(2, 4, 10, 0.45), rgba(2, 4, 10, 0.55)),
+        repeating-linear-gradient(90deg, transparent 0, transparent 44px, rgba(116, 154, 255, 0.05) 44px, rgba(116, 154, 255, 0.05) 45px);
+      pointer-events: none;
+      z-index: -1;
+    }
 
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 28px 22px 52px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+      animation: fade-up 0.7s ease both;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .avatar {
+      width: 66px;
+      height: 66px;
+      border-radius: 16px;
+      background: linear-gradient(140deg, #ff9567 0%, #ffdb67 45%, #0ea5a0 100%);
+      display: grid;
+      place-items: center;
+      font: 700 1.2rem "Space Grotesk", sans-serif;
+      color: #122531;
+      box-shadow: 0 10px 28px rgba(22, 33, 45, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+    }
+
+    .name {
+      font: 700 1.12rem "Space Grotesk", sans-serif;
+      letter-spacing: 0.01em;
+    }
+
+    .role {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 600;
+      padding: 8px 13px;
+      border-radius: 999px;
+      transition: all 0.25s ease;
+    }
+
+    nav a:hover {
+      background: #ffffff;
+      color: var(--brand-strong);
+      box-shadow: 0 8px 20px rgba(22, 33, 45, 0.09);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 20px;
+      align-items: start;
+      margin-top: 6px;
+      margin-bottom: 8px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 10px 30px rgba(22, 33, 45, 0.1);
+      padding: 22px;
+    }
+
+    h1 {
+      font: 700 clamp(1.9rem, 3vw, 2.8rem) "Space Grotesk", sans-serif;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 10px;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 60ch;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      padding: 10px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0d9488, #14b8a6);
+      color: #f6fffd;
+      box-shadow: 0 10px 25px rgba(13, 148, 136, 0.28);
+    }
+
+    .btn-outline {
+      background: rgba(9, 16, 30, 0.55);
+      border-color: var(--stroke);
+      color: var(--brand-strong);
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 8px;
+      font-size: 0.95rem;
+    }
+
+    .contact-list p {
+      color: var(--ink);
+    }
+
+    .contact-list a {
+      color: var(--brand-strong);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    section {
+      margin-top: 30px;
+      animation: fade-up 0.65s ease both;
+    }
+
+    h2 {
+      font: 700 1.35rem "Space Grotesk", sans-serif;
+      margin-bottom: 14px;
+      letter-spacing: -0.01em;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+    }
+
+    .project {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .project::after {
+      content: "";
+      position: absolute;
+      inset: auto 20px 14px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff9a5f, #0d9488);
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    .project h3 {
+      margin-bottom: 8px;
+      font-size: 1.05rem;
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .skill {
+      padding: 8px 11px;
+      border-radius: 999px;
+      border: 1px solid rgba(13, 148, 136, 0.25);
+      background: rgba(13, 148, 136, 0.08);
+      color: #d9efff;
+      font-size: 0.84rem;
+      font-weight: 700;
+      animation: skill-float 3.2s ease-in-out infinite;
+      will-change: transform;
+    }
+
+    .skill:nth-child(2n) {
+      animation-duration: 3.8s;
+      animation-delay: 0.2s;
+    }
+
+    .skill:nth-child(3n) {
+      animation-duration: 4.1s;
+      animation-delay: 0.35s;
+    }
+
+    .skill:nth-child(4n) {
+      animation-duration: 3.5s;
+      animation-delay: 0.15s;
+    }
+
+    .skill:hover {
+      animation-play-state: paused;
+      transform: translateY(-2px) scale(1.03);
+    }
+
+    form {
+      display: grid;
+      gap: 10px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1px solid var(--stroke);
+      background: rgba(8, 14, 25, 0.76);
+      color: var(--ink);
+      padding: 11px 12px;
+      border-radius: 12px;
+      font: 500 0.95rem Manrope, sans-serif;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: rgba(13, 148, 136, 0.6);
+      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.14);
+    }
+
+    footer {
+      margin: 42px 0 10px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.84rem;
+    }
+
+    @media (max-width: 900px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        padding: 20px 14px 38px;
+      }
+
+      .card {
+        border-radius: 16px;
+        padding: 18px;
+      }
+
+      nav a {
+        padding: 7px 10px;
+        font-size: 0.9rem;
+      }
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bg-shift {
+      from {
+        background-position: 0% 50%;
+      }
+      to {
+        background-position: 100% 50%;
+      }
+    }
+
+    @keyframes skill-float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
+    }
   </style>
 </head>
 <body>
@@ -54,8 +371,8 @@ footer{margin:40px 0 20px;color:var(--muted);font-size:13px;text-align:center}
       <div class="brand">
         <div class="avatar">CS</div>
         <div>
-          <div style="font-weight:800">Chitra Shree K</div>
-          <div class="muted" style="font-size:13px">BCA Student — Web · IoT </div>
+          <div class="name">Chitra Shree K</div>
+          <div class="role">BCA Student - Web . IoT</div>
         </div>
       </div>
       <nav>
@@ -64,103 +381,108 @@ footer{margin:40px 0 20px;color:var(--muted);font-size:13px;text-align:center}
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
       </nav>
-    </header><main>
-  <section class="hero">
-    <div class="card">
-      <h1>Hi — I’m <span style="color:var(--accent)">Chitra Shree K</span>.</h1>
-      <p class="lead">A BCA student passionate about Artificial Intelligence, Machine Learning and Robotics.</p>
-      <div style="margin-top:14px">
-        <a class="btn" href="#projects">View Projects</a>
-        <a class="btn btn-outline" href="https://github.com/chitra-it" target="_blank">GitHub</a>
-      </div>
-    </div>
-    <aside class="card">
-      <h2>Contact Info</h2>
-      <p><strong>Email:</strong> chitrashreek0419@gmail.com</p>
-      <p><strong>Phone:</strong> +91 7411422691</p>
-      <p><strong>LinkedIn:</strong> 
-  <a href="https://www.linkedin.com/in/chitra-shree-k-3b76aa30a" target="_blank" style="color:var(--accent)">
-    View Profile
-  </a>
-</p>
-      <p><strong>Location:</strong> Tumkur, Karnataka, India</p>
-      <p><strong>Status:</strong> Open to work</p>
-    </aside>
-  </section>
+    </header>
 
-  <section id="about">
-    <h2>About Me</h2>
-    <div class="card">
-      <p>I enjoy building simple, useful software and learning hardware-software integrations. Currently seeking an opportunity to contribute to innovate projects and develop practical expertise in intelligent, automation, robotics, and AI-driven solutions.</p>
-    </div>
-  </section>
+    <main>
+      <section class="hero">
+        <div class="card">
+          <h1>Hi - I am <span style="color: var(--brand-strong)">Chitra Shree K</span>.</h1>
+          <p class="lead">A BCA student passionate about Artificial Intelligence, Machine Learning and Robotics.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-outline" href="https://github.com/chitra-it" target="_blank">GitHub</a>
+            <a class="btn btn-outline" href="Chitra_Shree_K_Resume.pdf" download>Download Resume</a>
+          </div>
+        </div>
 
-  <section id="projects">
-    <h2>Projects</h2>
-    <div class="grid">
-      <div class="card project">
-        <h3>Typing Club Web Clone</h3>
-        <p>A typing speed improver web application , which was developed by our team in V-Avishkar IT Club. Tech: HTML · CSS · Node.js · Firebase.</p>
-      </div>
-      <div class="card project">
-        <h3>Fingure gesture based virtual drawing system</h3>
-        <p>A gesture controlled finger painting application built using MediaPipe and OpenCV.It allows users to draw, erase, and interact with digital canvas using their hands instead of mouse.</p>
-      </div>
-       <div class="card project">
-        <h3>QR Code Attendance system</h3>
-        <p>An Automatic Attendance System which records attendance, reduces manual errors, and provides real-time data tracking through a secure digital platform built using Python, Flask, OpenCV, SQLite3, HTML, CSS, Webcam.</p>
-      </div>
+        <aside class="card">
+          <h2>Contact Info</h2>
+          <div class="contact-list">
+            <p><strong>Email:</strong> chitrashreek0419@gmail.com</p>
+            <p><strong>Phone:</strong> +91 7411422691</p>
+            <p>
+              <strong>LinkedIn:</strong>
+              <a href="https://www.linkedin.com/in/chitra-shree-k-3b76aa30a" target="_blank">View Profile</a>
+            </p>
+            <p><strong>Location:</strong> Tumkur, Karnataka, India</p>
+            <p><strong>Status:</strong> Open to work</p>
+          </div>
+        </aside>
+      </section>
 
-  <section id="skills">
-    <h2>Skills</h2>
-    <div class="card">
-      <div class="skills">
-        <div class="skill">HTML</div>
-        <div class="skill">CSS</div>
-        <div class="skill">JavaScript</div>
-        <div class="skill">Python</div>
-        <div class="skill">C</div>
-        <div class="skill">C#.Net</div>
-        <div class="skill">SQL</div>
-        <div class="skill">Git</div>
-        <div class="skill">Sensors and IOT Basics</div>
-      </div>
-    </div>
-  </section>
+      <section id="about">
+        <h2>About Me</h2>
+        <div class="card">
+          <p>I enjoy building simple, useful software and learning hardware-software integrations. Currently seeking an opportunity to contribute to innovate projects and develop practical expertise in intelligent, automation, robotics, and AI-driven solutions.</p>
+        </div>
+      </section>
 
-  <section id="contact">
-    <h2>Contact</h2>
-    <div class="card">
-      <form onsubmit="handleForm(event)" style="display:flex;flex-direction:column;gap:10px">
-        <input required name="name" placeholder="Your name" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:inherit" />
-        <input required name="email" placeholder="Your email" type="email" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:inherit" />
-        <textarea required name="message" placeholder="Message" rows="5" style="padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.1);background:transparent;color:inherit"></textarea>
-        <button type="submit" class="btn">Send</button>
-      </form>
-    </div>
-  </section>
-</main>
+      <section id="projects">
+        <h2>Projects</h2>
+        <div class="grid">
+          <div class="card project">
+            <h3>Typing Club Web Clone</h3>
+            <p>A typing speed improver web application , which was developed by our team in V-Avishkar IT Club. Tech: HTML . CSS . Node.js . Firebase.</p>
+          </div>
+          <div class="card project">
+            <h3>Fingure gesture based virtual drawing system</h3>
+            <p>A gesture controlled finger painting application built using MediaPipe and OpenCV.It allows users to draw, erase, and interact with digital canvas using their hands instead of mouse.</p>
+          </div>
+          <div class="card project">
+            <h3>QR Code Attendance system</h3>
+            <p>An Automatic Attendance System which records attendance, reduces manual errors, and provides real-time data tracking through a secure digital platform built using Python, Flask, OpenCV, SQLite3, HTML, CSS, Webcam.</p>
+          </div>
+        </div>
+      </section>
 
-<footer>
-  <div id="footer-text"></div>
-</footer>
+      <section id="skills">
+        <h2>Skills</h2>
+        <div class="card">
+          <div class="skills">
+            <div class="skill">HTML</div>
+            <div class="skill">CSS</div>
+            <div class="skill">JavaScript</div>
+            <div class="skill">Python</div>
+            <div class="skill">C</div>
+            <div class="skill">C#.Net</div>
+            <div class="skill">SQL</div>
+            <div class="skill">Git</div>
+            <div class="skill">Sensors and IOT Basics</div>
+          </div>
+        </div>
+      </section>
 
-  </div>  <script>
-    function handleForm(e){
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="card">
+          <form onsubmit="handleForm(event)">
+            <input required name="name" placeholder="Your name" />
+            <input required name="email" placeholder="Your email" type="email" />
+            <textarea required name="message" placeholder="Message" rows="5"></textarea>
+            <button type="submit" class="btn btn-primary">Send</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div id="footer-text"></div>
+    </footer>
+  </div>
+
+  <script>
+    function handleForm(e) {
       e.preventDefault();
       const data = new FormData(e.target);
-      const name = data.get('name');
-      const email = data.get('email');
-      const message = data.get('message');
-      const subject = encodeURIComponent('Portfolio contact from ' + name);
-      const body = encodeURIComponent('Name: ' + name + '\nEmail: ' + email + '\n\n' + message);
-      window.location.href = 
-  'mailto:chitrashreek0419@gmail.com?subject=' + subject + '&body=' + body;
+      const name = data.get("name");
+      const email = data.get("email");
+      const message = data.get("message");
+      const subject = encodeURIComponent("Portfolio contact from " + name);
+      const body = encodeURIComponent("Name: " + name + "\nEmail: " + email + "\n\n" + message);
+      window.location.href = "mailto:chitrashreek0419@gmail.com?subject=" + subject + "&body=" + body;
     }
 
-    document.getElementById('footer-text').textContent = '© ' + new Date().getFullYear() + ' Chitra Shree K · Built with HTML & CSS';
-  </script></body>
-
+    document.getElementById("footer-text").textContent = "© " + new Date().getFullYear() + " Chitra Shree K . Built with HTML & CSS";
+  </script>
+</body>
 </html>
-
-
