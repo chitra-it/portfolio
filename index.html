@@ -26,15 +26,21 @@
 
     * { box-sizing: border-box; margin: 0; padding: 0; }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+      height: 100%;
+    }
 
     body {
       font-family: Manrope, "Segoe UI", sans-serif;
+      font-size: 1.08rem;
       color: var(--ink);
       background: #02050b url("bg.jpg") center / cover no-repeat fixed;
       min-height: 100vh;
       line-height: 1.55;
       overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      overflow-y: auto;
     }
 
     body::before {
@@ -51,7 +57,7 @@
     .container {
       max-width: var(--maxw);
       margin: 0 auto;
-      padding: 32px 24px 56px;
+      padding: 96px 24px 16px;
     }
 
     header {
@@ -62,6 +68,16 @@
       gap: 16px;
       margin-bottom: 20px;
       animation: fade-up 0.7s ease both;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      background: rgba(4, 10, 20, 0.72);
+      border-bottom: 1px solid var(--stroke);
+      border-radius: 0;
+      padding: 12px 24px;
+      backdrop-filter: blur(10px);
     }
 
     .brand {
@@ -196,9 +212,37 @@
       text-decoration: none;
     }
 
-    section {
-      margin-top: 30px;
+    .snap-section {
+      min-height: 100vh;
+      min-height: 100svh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      scroll-margin-top: 90px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 92px 0 20px;
       animation: fade-up 0.65s ease both;
+    }
+
+    .hero.snap-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 34%);
+      align-items: stretch;
+      gap: 20px;
+      min-height: calc(100svh - 140px);
+    }
+
+    .hero > .card,
+    .hero > aside.card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .hero > aside.card {
+      justify-content: flex-start;
     }
 
     h2 {
@@ -207,10 +251,46 @@
       letter-spacing: -0.01em;
     }
 
-    .grid {
+    .project-section {
+      align-items: center;
+    }
+
+    .project-title {
+      width: 100%;
+      margin-bottom: 12px;
+    }
+
+    .projects-grid {
+      width: 100%;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project-card {
+      width: 100%;
+      min-height: min(54vh, 420px);
+      display: grid;
+      align-content: center;
       gap: 14px;
+      padding: clamp(18px, 2vw, 28px);
+      background: linear-gradient(160deg, rgba(10, 24, 49, 0.8), rgba(7, 21, 44, 0.64));
+      border: 1px solid rgba(127, 180, 255, 0.35);
+      border-radius: 20px;
+      box-shadow: 0 14px 30px rgba(5, 16, 34, 0.34);
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: -40% 58% auto -20%;
+      height: 230px;
+      background: radial-gradient(circle, rgba(76, 160, 255, 0.35), transparent 65%);
+      pointer-events: none;
+      z-index: -1;
     }
 
     .project {
@@ -231,41 +311,87 @@
 
     .project h3 {
       margin-bottom: 8px;
-      font-size: 1.05rem;
+      font-size: clamp(1.25rem, 2vw, 1.7rem);
       font-family: "Space Grotesk", sans-serif;
     }
 
     .project p {
       color: var(--muted);
-      font-size: 0.94rem;
+      font-size: clamp(0.98rem, 1.2vw, 1.1rem);
+      max-width: 66ch;
     }
 
     .about-content {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) 120px;
-      gap: 18px;
-      align-items: center;
+      grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.75fr);
+      gap: 26px;
+      align-items: stretch;
+      min-height: min(68vh, 560px);
     }
 
     .about-photo {
-      justify-self: end;
-      background: transparent;
-      border: 0;
-      border-radius: 0;
-      padding: 0;
-      box-shadow: none;
+      justify-self: stretch;
+      background: linear-gradient(145deg, rgba(39, 68, 120, 0.38), rgba(10, 26, 56, 0.5));
+      border: 1px solid rgba(163, 203, 255, 0.28);
+      border-radius: 20px;
+      padding: 18px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08), 0 16px 34px rgba(5, 16, 34, 0.38);
       animation: about-photo-float 3.2s ease-in-out infinite;
       isolation: isolate;
+      display: grid;
+      place-items: center;
     }
 
     .about-photo img {
-      width: 92px;
-      height: auto;
+      width: min(100%, 320px);
+      max-height: 420px;
+      object-fit: cover;
       display: block;
-      border-radius: 0;
-      mix-blend-mode: darken;
-      filter: contrast(1.16) saturate(1.08);
+      border-radius: 16px;
+      mix-blend-mode: normal;
+      filter: contrast(1.08) saturate(1.08);
       animation: about-image-breathe 4.2s ease-in-out infinite;
+    }
+
+    .about-text {
+      display: grid;
+      align-content: center;
+      gap: 14px;
+    }
+
+    .about-text p {
+      color: #d8e8ff;
+      font-size: clamp(1rem, 1.15vw, 1.2rem);
+      line-height: 1.8;
+      max-width: 58ch;
+    }
+
+    .about-chip {
+      width: fit-content;
+      padding: 7px 12px;
+      border-radius: 999px;
+      font: 700 0.82rem "Space Grotesk", sans-serif;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      color: #dff7ff;
+      border: 1px solid rgba(95, 194, 255, 0.4);
+      background: rgba(11, 45, 92, 0.45);
+    }
+
+    .about-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .about-highlights span {
+      padding: 8px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(133, 181, 255, 0.26);
+      background: rgba(18, 44, 86, 0.45);
+      font-size: 0.85rem;
+      color: #dcecff;
+      font-weight: 600;
     }
 
     .project-links {
@@ -293,42 +419,62 @@
       font-size: 0.84rem;
     }
 
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .skills-panel {
+      width: 100%;
+      min-height: min(72vh, 620px);
+      display: grid;
+      align-content: center;
+      gap: 16px;
+      padding: clamp(18px, 2.4vw, 30px);
+      background: linear-gradient(160deg, rgba(8, 28, 52, 0.82), rgba(5, 18, 38, 0.66));
+      border: 1px solid rgba(117, 176, 255, 0.3);
+      border-radius: 22px;
+      box-shadow: 0 18px 34px rgba(5, 16, 34, 0.34);
     }
 
-    .skill {
-      padding: 8px 11px;
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .skill-card {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      min-height: 72px;
+      padding: 8px 12px;
       border-radius: 999px;
-      border: 1px solid rgba(13, 148, 136, 0.25);
-      background: rgba(13, 148, 136, 0.08);
-      color: #d9efff;
-      font-size: 0.84rem;
-      font-weight: 700;
-      animation: skill-float 3.2s ease-in-out infinite;
-      will-change: transform;
+      border: 1px solid rgba(121, 184, 255, 0.32);
+      background:
+        radial-gradient(circle at 28% 24%, rgba(149, 210, 255, 0.24), transparent 40%),
+        linear-gradient(150deg, rgba(16, 44, 82, 0.78), rgba(9, 25, 47, 0.82));
+      color: #e3f2ff;
+      font: 700 1.16rem "Space Grotesk", sans-serif;
+      letter-spacing: 0.01em;
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+      animation: bubble-float 4.2s ease-in-out infinite;
     }
 
-    .skill:nth-child(2n) {
-      animation-duration: 3.8s;
-      animation-delay: 0.2s;
+    .skill-card:hover {
+      transform: translateY(-5px) scale(1.02);
+      border-color: rgba(166, 217, 255, 0.55);
+      box-shadow: 0 10px 20px rgba(16, 42, 80, 0.35);
     }
 
-    .skill:nth-child(3n) {
-      animation-duration: 4.1s;
-      animation-delay: 0.35s;
-    }
-
-    .skill:nth-child(4n) {
-      animation-duration: 3.5s;
+    .skill-card:nth-child(2n) {
+      animation-duration: 4.8s;
       animation-delay: 0.15s;
     }
 
-    .skill:hover {
-      animation-play-state: paused;
-      transform: translateY(-2px) scale(1.03);
+    .skill-card:nth-child(3n) {
+      animation-duration: 5.1s;
+      animation-delay: 0.28s;
+    }
+
+    .skill-card:nth-child(4n) {
+      animation-duration: 4.4s;
+      animation-delay: 0.1s;
     }
 
     form {
@@ -356,15 +502,36 @@
     }
 
     footer {
-      margin: 42px 0 10px;
+      margin: 14px 0 10px;
       text-align: center;
       color: var(--muted);
       font-size: 0.84rem;
     }
 
     @media (max-width: 900px) {
+      .snap-section {
+        padding-top: 104px;
+      }
+
       .hero {
         grid-template-columns: 1fr;
+      }
+
+      .hero.snap-section {
+        min-height: auto;
+      }
+
+      .hero > .card,
+      .hero > aside.card {
+        height: auto;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .about-content {
@@ -373,6 +540,7 @@
 
       .about-photo {
         justify-self: center;
+        width: min(100%, 380px);
       }
     }
 
@@ -397,12 +565,32 @@
 
     @media (max-width: 560px) {
       .container {
-        padding: 20px 14px 38px;
+        padding: 92px 14px 38px;
+      }
+
+      header {
+        padding: 10px 14px;
       }
 
       .card {
         border-radius: 16px;
         padding: 18px;
+      }
+
+      .projects-grid {
+        gap: 12px;
+      }
+
+      .project-card {
+        min-height: auto;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-panel {
+        min-height: auto;
       }
 
       nav a {
@@ -439,16 +627,6 @@
       }
     }
 
-    @keyframes skill-float {
-      0%,
-      100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-5px);
-      }
-    }
-
     @keyframes about-photo-float {
       0%,
       100% {
@@ -469,6 +647,16 @@
       }
     }
 
+    @keyframes bubble-float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -482,7 +670,7 @@
         </div>
       </div>
       <nav>
-        <a href="#about">About</a>
+        <a href="#about">About Me</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
@@ -490,7 +678,7 @@
     </header>
 
     <main>
-      <section class="hero">
+      <section id="home" class="hero snap-section">
         <div class="card">
           <h1>Hi - I am <span style="color: var(--brand-strong)">Chitra Shree K</span></h1>
           <p class="lead">A BCA student passionate about Artificial Intelligence, Machine Learning and Robotics.</p>
@@ -516,11 +704,19 @@
         </aside>
       </section>
 
-      <section id="about">
+      <section id="about" class="snap-section">
         <h2>About Me</h2>
         <div class="card">
           <div class="about-content">
-            <p>I enjoy building simple, useful software and learning hardware-software integrations. I am currently seeking an opportunity to contribute to innovative projects and develop practical expertise in intelligent automation, robotics, and AI-driven solutions.</p>
+            <div class="about-text">
+              <span class="about-chip">Profile Snapshot</span>
+              <p>A dedicated BCA Student with hands-on experience in academic and technical projects and proficient inHTML, CSS, JavaScript and responsive design, with hands on experience in creating user friendly and visually appealing website. Seeking an entry-level IT role at TCS to apply technical knowledge, problem-solving skills, and grow as a professional.</p>
+              <div class="about-highlights">
+                <span>Network Fundamentals</span>
+                <span>Cybersecurity Basics</span>
+                <span>IT Support Ready</span>
+              </div>
+            </div>
             <div class="about-photo">
               <img src="About.jpeg" alt="Formal profile illustration" />
             </div>
@@ -528,24 +724,24 @@
         </div>
       </section>
 
-      <section id="projects">
-        <h2>Projects</h2>
-        <div class="grid">
-          <div class="card project">
+      <section id="projects" class="snap-section project-section">
+        <h2 class="project-title">Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card project">
             <h3>Typing Club Web Clone</h3>
             <p>A typing speed improvement web application developed by our team in V-Avishkar IT Club. Tech: HTML, CSS, Node.js, Firebase.</p>
             <div class="project-links">
               <a class="btn btn-outline" href="https://github.com/chitra-it" target="_blank" rel="noopener noreferrer">Source / Profile</a>
             </div>
           </div>
-          <div class="card project">
+          <div class="project-card project">
             <h3>Finger Gesture Based Virtual Drawing System</h3>
             <p>A gesture-controlled finger painting application built using MediaPipe and OpenCV. It allows users to draw, erase, and interact with a digital canvas using their hands instead of a mouse.</p>
             <div class="project-links">
               <a class="btn btn-outline" href="https://github.com/chitra-it" target="_blank" rel="noopener noreferrer">Source / Profile</a>
             </div>
           </div>
-          <div class="card project">
+          <div class="project-card project">
             <h3>QR Code Attendance System</h3>
             <p>An automatic attendance system that records attendance, reduces manual errors, and provides real-time tracking through a secure digital platform built using Python, Flask, OpenCV, SQLite3, HTML, CSS, and a webcam.</p>
             <div class="project-links">
@@ -555,24 +751,24 @@
         </div>
       </section>
 
-      <section id="skills">
+      <section id="skills" class="snap-section">
         <h2>Skills</h2>
-        <div class="card">
-          <div class="skills">
-            <div class="skill">HTML</div>
-            <div class="skill">CSS</div>
-            <div class="skill">JavaScript</div>
-            <div class="skill">Python</div>
-            <div class="skill">C</div>
-            <div class="skill">C#.Net</div>
-            <div class="skill">SQL</div>
-            <div class="skill">Git</div>
-            <div class="skill">Sensors and IOT Basics</div>
+        <div class="skills-panel">
+          <div class="skills-grid">
+            <div class="skill-card">HTML</div>
+            <div class="skill-card">CSS</div>
+            <div class="skill-card">JavaScript</div>
+            <div class="skill-card">Python</div>
+            <div class="skill-card">C</div>
+            <div class="skill-card">C#.Net</div>
+            <div class="skill-card">SQL</div>
+            <div class="skill-card">Git</div>
+            <div class="skill-card">Sensors and IOT Basics</div>
           </div>
         </div>
       </section>
 
-      <section id="contact">
+      <section id="contact" class="snap-section">
         <h2>Contact</h2>
         <div class="card">
           <form onsubmit="handleForm(event)">
