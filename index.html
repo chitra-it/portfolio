@@ -3,6 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#02050b" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <title>Chitra Shree K - Portfolio</title>
   <meta name="description" content="Portfolio of Chitra Shree K - BCA Student. Projects: Typing Club Web Clone. Skills: HTML, CSS, JavaScript, Python" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -35,7 +37,7 @@
       font-family: Manrope, "Segoe UI", sans-serif;
       font-size: 1.08rem;
       color: var(--ink);
-      background: #02050b url("bg.jpg") center / cover no-repeat fixed;
+      background: #02050b url("bg.jpg") center / cover no-repeat;
       min-height: 100vh;
       line-height: 1.55;
       overflow-x: hidden;
@@ -922,6 +924,155 @@
 
       .contact-note {
         font-size: 0.75rem;
+      }
+
+      /* Ensure no horizontal overflow */
+      * {
+        max-width: 100%;
+        box-sizing: border-box;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .container {
+        padding: 65px 6px 18px;
+      }
+
+      header {
+        padding: 4px 6px;
+      }
+
+      .snap-section {
+        padding: 65px 0 10px;
+      }
+
+      .hero.snap-section {
+        padding: 30px 0 10px;
+      }
+
+      h1 {
+        font-size: 1.2rem;
+        line-height: 1.4;
+      }
+
+      h2 {
+        font-size: 1rem;
+        margin-bottom: 8px;
+      }
+
+      .card {
+        padding: 10px;
+        border-radius: 10px;
+      }
+
+      .avatar {
+        width: 48px;
+        height: 48px;
+        font-size: 0.9rem;
+      }
+
+      .name {
+        font-size: 0.9rem;
+      }
+
+      .role {
+        font-size: 0.65rem;
+      }
+
+      nav a {
+        padding: 3px 5px;
+        font-size: 0.7rem;
+      }
+
+      .btn {
+        padding: 7px 10px;
+        font-size: 0.75rem;
+        border-radius: 8px;
+      }
+
+      .lead {
+        font-size: 0.85rem;
+        line-height: 1.4;
+      }
+
+      .project-card {
+        padding: 12px;
+        border-radius: 12px;
+      }
+
+      .project h3 {
+        font-size: 1rem;
+        margin-bottom: 4px;
+      }
+
+      .project p {
+        font-size: 0.85rem;
+        line-height: 1.4;
+      }
+
+      .skill-card {
+        min-height: 55px;
+        font-size: 0.8rem;
+        padding: 6px 8px;
+        border-radius: 10px;
+      }
+
+      .skills-panel {
+        padding: 10px;
+        border-radius: 12px;
+      }
+
+      .about-photo {
+        padding: 12px;
+        border-radius: 14px;
+      }
+
+      .about-photo img {
+        border-radius: 10px;
+      }
+
+      .about-chip {
+        padding: 4px 8px;
+        font-size: 0.7rem;
+      }
+
+      .about-highlights span {
+        padding: 4px 8px;
+        font-size: 0.75rem;
+        border-radius: 6px;
+      }
+
+      .contact-list p {
+        font-size: 0.85rem;
+      }
+
+      .contact-note {
+        font-size: 0.7rem;
+      }
+
+      footer {
+        margin: 12px 0 10px;
+        font-size: 0.7rem;
       }
     }
 
