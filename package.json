@@ -1,0 +1,19 @@
+{
+  "name": "portfolio-sms-backend",
+  "version": "1.0.0",
+  "description": "SMS backend for Chitra's portfolio",
+  "main": "backend.js",
+  "scripts": {
+    "start": "node backend.js",
+    "dev": "nodemon backend.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "twilio": "^3.77.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
