@@ -1,0 +1,919 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chitra Shree K - Portfolio</title>
+  <meta name="description" content="Portfolio of Chitra Shree K - BCA Student. Projects: Typing Club Web Clone. Skills: HTML, CSS, JavaScript, Python" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #03050a;
+      --ink: #e6eefc;
+      --muted: #a5b4cf;
+      --card: rgba(11, 16, 26, 0.78);
+      --stroke: rgba(128, 162, 255, 0.2);
+      --brand: #31a6ff;
+      --brand-strong: #5fc2ff;
+      --maxw: 1280px;
+      --hero-grad: radial-gradient(circle at 16% 18%, rgba(41, 121, 255, 0.42), transparent 42%),
+                   radial-gradient(circle at 82% 10%, rgba(89, 172, 255, 0.24), transparent 38%),
+                   radial-gradient(circle at 60% 85%, rgba(12, 56, 128, 0.2), transparent 40%),
+                   linear-gradient(135deg, #02040b 0%, #040913 45%, #06162e 100%);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html {
+      scroll-behavior: smooth;
+      height: 100%;
+    }
+
+    body {
+      font-family: Manrope, "Segoe UI", sans-serif;
+      font-size: 1.08rem;
+      color: var(--ink);
+      background: #02050b url("bg.jpg") center / cover no-repeat fixed;
+      min-height: 100vh;
+      line-height: 1.55;
+      overflow-x: hidden;
+      scroll-snap-type: y mandatory;
+      overflow-y: auto;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(120, 197, 255, 0.2), transparent 42%),
+        linear-gradient(rgba(2, 5, 12, 0.5), rgba(2, 5, 12, 0.64));
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: var(--maxw);
+      margin: 0 auto;
+      padding: 80px 24px 16px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 20px;
+      animation: fade-up 0.7s ease both;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 20;
+      background: rgba(4, 10, 20, 0.8);
+      border-bottom: 1px solid rgba(128, 162, 255, 0.15);
+      border-radius: 0;
+      padding: 12px 24px;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 4px 16px rgba(2, 5, 12, 0.4);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      background: linear-gradient(140deg, #ff9567 0%, #ffdb67 45%, #0ea5a0 100%);
+      display: grid;
+      place-items: center;
+      font: 700 1.1rem "Space Grotesk", sans-serif;
+      color: #0a1a2e;
+      box-shadow: 0 12px 32px rgba(22, 33, 45, 0.3), inset 0 1px 2px rgba(255, 255, 255, 0.3);
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .avatar:hover {
+      transform: scale(1.05);
+      box-shadow: 0 14px 40px rgba(22, 33, 45, 0.4), inset 0 1px 2px rgba(255, 255, 255, 0.4);
+    }
+
+    .name {
+      font: 700 1.08rem "Space Grotesk", sans-serif;
+      letter-spacing: 0.005em;
+      color: #f0f7ff;
+    }
+
+    .role {
+      font-size: 0.82rem;
+      color: #99a8c2;
+      font-weight: 500;
+    }
+
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #c0d0e8;
+      font-weight: 600;
+      padding: 8px 14px;
+      border-radius: 999px;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      background: rgba(95, 194, 255, 0.12);
+      color: #7dd3ff;
+      box-shadow: 0 4px 12px rgba(13, 148, 136, 0.15), inset 0 0 0 1px rgba(95, 194, 255, 0.3);
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 340px;
+      gap: 24px;
+      align-items: start;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--stroke);
+      border-radius: 24px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 12px 36px rgba(22, 33, 45, 0.15);
+      padding: 28px;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .card:hover {
+      border-color: rgba(128, 162, 255, 0.4);
+      box-shadow: 0 16px 48px rgba(22, 33, 45, 0.2);
+    }
+
+    h1 {
+      font: 700 clamp(1.8rem, 2.8vw, 2.6rem) "Space Grotesk", sans-serif;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 12px;
+    }
+
+    .lead {
+      color: var(--muted);
+      max-width: 60ch;
+      font-size: 1.12rem;
+      line-height: 1.65;
+    }
+
+    .btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      padding: 11px 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #0d9488, #14b8a6);
+      color: #f6fffd;
+      box-shadow: 0 12px 32px rgba(13, 148, 136, 0.35);
+    }
+
+    .btn-primary:hover {
+      box-shadow: 0 16px 42px rgba(13, 148, 136, 0.45);
+      background: linear-gradient(135deg, #0ca285, #12b09f);
+    }
+
+    .btn-outline {
+      background: rgba(9, 16, 30, 0.65);
+      border-color: rgba(95, 194, 255, 0.5);
+      color: var(--brand-strong);
+    }
+
+    .btn-outline:hover {
+      background: rgba(13, 148, 136, 0.15);
+      border-color: rgba(95, 194, 255, 0.8);
+      color: #7dd3ff;
+    }
+
+    .contact-list {
+      display: grid;
+      gap: 10px;
+      font-size: 0.97rem;
+    }
+
+    .contact-list p {
+      color: #e3ecff;
+      line-height: 1.6;
+      margin: 4px 0;
+    }
+
+    .contact-list a {
+      color: #5fc2ff;
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .contact-list a:hover {
+      color: #7dd3ff;
+      text-decoration: underline;
+    }
+
+    .snap-section {
+      min-height: 100vh;
+      min-height: 100svh;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      scroll-margin-top: 80px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 0 20px;
+      animation: fade-up 0.65s ease both;
+    }
+
+    .hero.snap-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 34%);
+      align-items: stretch;
+      gap: 20px;
+      min-height: calc(100svh - 140px);
+    }
+
+    .hero > .card,
+    .hero > aside.card {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .hero > aside.card {
+      justify-content: flex-start;
+    }
+
+    h2 {
+      font: 700 1.42rem "Space Grotesk", sans-serif;
+      margin-bottom: 18px;
+      letter-spacing: -0.01em;
+      color: #f0f7ff;
+    }
+
+    .project-section {
+      align-items: center;
+    }
+
+    .project-title {
+      width: 100%;
+      margin-bottom: 16px;
+    }
+
+    .projects-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project-card {
+      width: 100%;
+      min-height: min(50vh, 400px);
+      display: grid;
+      align-content: center;
+      gap: 16px;
+      padding: clamp(20px, 2vw, 30px);
+      background: linear-gradient(160deg, rgba(10, 24, 49, 0.9), rgba(7, 21, 44, 0.75));
+      border: 1px solid rgba(127, 180, 255, 0.45);
+      border-radius: 24px;
+      box-shadow: 0 16px 40px rgba(5, 16, 34, 0.4);
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(127, 180, 255, 0.65);
+      box-shadow: 0 20px 50px rgba(5, 16, 34, 0.5);
+    }
+
+    .project-card::before {
+      content: "";
+      position: absolute;
+      inset: -40% 58% auto -20%;
+      height: 230px;
+      background: radial-gradient(circle, rgba(76, 160, 255, 0.35), transparent 65%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .project {
+      position: relative;
+      isolation: isolate;
+    }
+
+    .project::after {
+      content: "";
+      position: absolute;
+      inset: auto 20px 14px;
+      height: 3px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #ff9a5f, #0d9488);
+      opacity: 0.3;
+      z-index: -1;
+    }
+
+    .project h3 {
+      margin-bottom: 10px;
+      font-size: clamp(1.2rem, 2vw, 1.6rem);
+      font-family: "Space Grotesk", sans-serif;
+      color: #f0f7ff;
+      font-weight: 700;
+    }
+
+    .project p {
+      color: #cbd5e8;
+      font-size: clamp(0.95rem, 1.1vw, 1.08rem);
+      max-width: 66ch;
+      line-height: 1.6;
+    }
+
+    .about-content {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(220px, 0.75fr);
+      gap: 26px;
+      align-items: stretch;
+      min-height: min(68vh, 560px);
+    }
+
+    .about-photo {
+      justify-self: stretch;
+      background: linear-gradient(145deg, rgba(39, 68, 120, 0.45), rgba(10, 26, 56, 0.6));
+      border: 2px solid rgba(163, 203, 255, 0.35);
+      border-radius: 24px;
+      padding: 20px;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1), 0 20px 48px rgba(5, 16, 34, 0.45);
+      animation: about-photo-float 3.2s ease-in-out infinite;
+      isolation: isolate;
+      display: grid;
+      place-items: center;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .about-photo:hover {
+      border-color: rgba(163, 203, 255, 0.55);
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.12), 0 24px 56px rgba(5, 16, 34, 0.55);
+    }
+
+    .about-photo img {
+      width: min(100%, 320px);
+      max-height: 420px;
+      object-fit: cover;
+      display: block;
+      border-radius: 16px;
+      mix-blend-mode: normal;
+      filter: contrast(1.08) saturate(1.08);
+      animation: about-image-breathe 4.2s ease-in-out infinite;
+    }
+
+    .about-text {
+      display: grid;
+      align-content: center;
+      gap: 16px;
+    }
+
+    .about-text p {
+      color: #d8e8ff;
+      font-size: clamp(1rem, 1.1vw, 1.15rem);
+      line-height: 1.8;
+      max-width: 58ch;
+    }
+
+    .about-chip {
+      width: fit-content;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font: 700 0.78rem "Space Grotesk", sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #dff7ff;
+      border: 1px solid rgba(95, 194, 255, 0.5);
+      background: rgba(13, 45, 86, 0.55);
+      margin-bottom: 4px;
+      display: inline-block;
+    }
+
+    .about-highlights {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .about-highlights span {
+      padding: 9px 13px;
+      border-radius: 12px;
+      border: 1px solid rgba(133, 181, 255, 0.35);
+      background: rgba(20, 50, 100, 0.55);
+      font-size: 0.83rem;
+      color: #e0e8ff;
+      font-weight: 600;
+      transition: all 0.3s ease;
+    }
+
+    .about-highlights span:hover {
+      border-color: rgba(133, 181, 255, 0.55);
+      background: rgba(25, 60, 120, 0.65);
+      transform: translateY(-2px);
+    }
+
+    .project-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .project-links .btn {
+      padding: 8px 12px;
+      font-size: 0.8rem;
+    }
+
+    .contact-quick {
+      margin-top: 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .contact-note {
+      margin-top: 10px;
+      color: #8a99b8;
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .skills-panel {
+      width: 100%;
+      min-height: min(68vh, 580px);
+      display: grid;
+      align-content: center;
+      gap: 18px;
+      padding: clamp(20px, 2.4vw, 36px);
+      background: linear-gradient(160deg, rgba(8, 28, 52, 0.88), rgba(5, 18, 38, 0.76));
+      border: 1px solid rgba(117, 176, 255, 0.4);
+      border-radius: 26px;
+      box-shadow: 0 20px 48px rgba(5, 16, 34, 0.4);
+      transition: border-color 0.3s ease;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .skill-card {
+      display: grid;
+      place-items: center;
+      text-align: center;
+      min-height: 80px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(121, 184, 255, 0.42);
+      background:
+        radial-gradient(circle at 28% 24%, rgba(149, 210, 255, 0.28), transparent 45%),
+        linear-gradient(150deg, rgba(16, 44, 82, 0.85), rgba(9, 25, 47, 0.88));
+      color: #ecf5ff;
+      font: 700 1.06rem "Space Grotesk", sans-serif;
+      letter-spacing: 0.02em;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+      animation: bubble-float 4.2s ease-in-out infinite;
+      cursor: default;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-6px) scale(1.05);
+      border-color: rgba(166, 217, 255, 0.75);
+      box-shadow: 0 14px 28px rgba(16, 42, 80, 0.45);
+      background:
+        radial-gradient(circle at 28% 24%, rgba(149, 210, 255, 0.35), transparent 45%),
+        linear-gradient(150deg, rgba(20, 52, 96, 0.92), rgba(13, 32, 58, 0.95));
+    }
+
+    .skill-card:nth-child(2n) {
+      animation-duration: 4.8s;
+      animation-delay: 0.15s;
+    }
+
+    .skill-card:nth-child(3n) {
+      animation-duration: 5.1s;
+      animation-delay: 0.28s;
+    }
+
+    .skill-card:nth-child(4n) {
+      animation-duration: 4.4s;
+      animation-delay: 0.1s;
+    }
+
+    form {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border: 1.5px solid var(--stroke);
+      background: rgba(8, 14, 25, 0.85);
+      color: var(--ink);
+      padding: 12px 14px;
+      border-radius: 14px;
+      font: 500 1rem Manrope, sans-serif;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--muted);
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: none;
+      border-color: rgba(13, 148, 136, 0.8);
+      background: rgba(8, 14, 25, 0.95);
+      box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2), inset 0 0 0 1px rgba(95, 194, 255, 0.2);
+    }
+
+    footer {
+      margin: 20px 0 14px;
+      text-align: center;
+      color: #8a99b8;
+      font-size: 0.82rem;
+      font-weight: 500;
+      transition: color 0.3s ease;
+    }
+
+    footer:hover {
+      color: var(--brand-strong);
+    }
+
+    @media (max-width: 900px) {
+      .snap-section {
+        padding-top: 100px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .hero.snap-section {
+        min-height: auto;
+      }
+
+      .hero > .card,
+      .hero > aside.card {
+        height: auto;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .about-content {
+        grid-template-columns: 1fr;
+      }
+
+      .about-photo {
+        justify-self: center;
+        width: min(100%, 380px);
+      }
+    }
+
+    @media (min-width: 1500px) {
+      :root {
+        --maxw: 1380px;
+      }
+
+      .container {
+        padding: 30px 28px 64px;
+      }
+
+      .hero {
+        grid-template-columns: minmax(0, 1fr) 400px;
+        gap: 28px;
+      }
+
+      .card {
+        padding: 32px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        padding: 80px 12px 30px;
+      }
+
+      header {
+        padding: 10px 12px;
+      }
+
+      h1 {
+        font-size: clamp(1.5rem, 4vw, 2rem);
+      }
+
+      h2 {
+        font-size: 1.2rem;
+        margin-bottom: 14px;
+      }
+
+      .card {
+        border-radius: 16px;
+        padding: 16px;
+      }
+
+      .projects-grid {
+        gap: 12px;
+      }
+
+      .project-card {
+        min-height: auto;
+        border-radius: 16px;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .skill-card {
+        min-height: 70px;
+        font-size: 0.95rem;
+      }
+
+      .skills-panel {
+        min-height: auto;
+        padding: 16px;
+        border-radius: 16px;
+      }
+
+      nav a {
+        padding: 6px 10px;
+        font-size: 0.85rem;
+      }
+
+      .btn {
+        padding: 10px 16px;
+        font-size: 0.9rem;
+      }
+
+      .btn-row {
+        gap: 10px;
+      }
+
+      .lead {
+        font-size: 1rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation: none !important;
+        transition: none !important;
+      }
+
+    }
+
+    @keyframes fade-up {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bg-shift {
+      from {
+        background-position: 0% 50%;
+      }
+      to {
+        background-position: 100% 50%;
+      }
+    }
+
+    @keyframes about-photo-float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    @keyframes about-image-breathe {
+      0%,
+      100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.04);
+      }
+    }
+
+    @keyframes bubble-float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="avatar">CS</div>
+        <div>
+          <div class="name">Chitra Shree K</div>
+          <div class="role">BCA Student - Web . IoT</div>
+        </div>
+      </div>
+      <nav>
+        <a href="#about">About Me</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero snap-section">
+        <div class="card">
+          <h1>Hi - I am <span style="color: var(--brand-strong)">Chitra Shree K</span></h1>
+          <p class="lead">A BCA student passionate about Artificial Intelligence, Machine Learning and Robotics.</p>
+          <div class="btn-row">
+            <a class="btn btn-primary" href="#projects">View Projects</a>
+            <a class="btn btn-outline" href="https://github.com/chitra-it" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="btn btn-outline" href="Chitra_Shree_K_Resume.pdf" download>Download Resume</a>
+          </div>
+        </div>
+
+        <aside class="card">
+          <h2>Contact Info</h2>
+          <div class="contact-list">
+            <p><strong>Email:</strong> chitrashreek0419@gmail.com</p>
+            <p><strong>Phone:</strong> +91 7411422691</p>
+            <p>
+              <strong>LinkedIn:</strong>
+              <a href="https://www.linkedin.com/in/chitra-shree-k-3b76aa30a" target="_blank" rel="noopener noreferrer">View Profile</a>
+            </p>
+            <p><strong>Location:</strong> Tumkur, Karnataka, India</p>
+            <p><strong>Status:</strong> Open to work</p>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" class="snap-section">
+        <h2>About Me</h2>
+        <div class="card">
+          <div class="about-content">
+            <div class="about-text">
+              <span class="about-chip">Profile Snapshot</span>
+              <p>A dedicated BCA Student with hands-on experience in academic and technical projects and proficient inHTML, CSS, JavaScript and responsive design, with hands on experience in creating user friendly and visually appealing website. Seeking an entry-level IT role at TCS to apply technical knowledge, problem-solving skills, and grow as a professional.</p>
+              <div class="about-highlights">
+                <span>Network Fundamentals</span>
+                <span>Cybersecurity Basics</span>
+                <span>IT Support Ready</span>
+              </div>
+            </div>
+            <div class="about-photo">
+              <img src="About.jpeg" alt="Formal profile illustration" />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects" class="snap-section project-section">
+        <h2 class="project-title">Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card project">
+            <h3>Typing Club Web Clone</h3>
+            <p>A typing speed improvement web application developed by our team in V-Avishkar IT Club. Tech: HTML, CSS, Node.js, Firebase.</p>
+          
+          </div>
+          <div class="project-card project">
+            <h3>Finger Gesture Based Virtual Drawing System</h3>
+            <p>A gesture-controlled finger painting application built using MediaPipe and OpenCV. It allows users to draw, erase, and interact with a digital canvas using their hands instead of a mouse.</p>
+          </div>
+          <div class="project-card project">
+            <h3>QR Code Attendance System</h3>
+            <p>An automatic attendance system that records attendance, reduces manual errors, and provides real-time tracking through a secure digital platform built using Python, Flask, OpenCV, SQLite3, HTML, CSS, and a webcam.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="skills" class="snap-section">
+        <h2>Skills</h2>
+        <div class="skills-panel">
+          <div class="skills-grid">
+            <div class="skill-card">HTML</div>
+            <div class="skill-card">CSS</div>
+            <div class="skill-card">JavaScript</div>
+            <div class="skill-card">Python</div>
+            <div class="skill-card">C</div>
+            <div class="skill-card">C#.Net</div>
+            <div class="skill-card">SQL</div>
+            <div class="skill-card">Git</div>
+            <div class="skill-card">Sensors and IOT Basics</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="snap-section">
+        <h2>Contact</h2>
+        <div class="card">
+          <form onsubmit="handleForm(event)">
+            <input required name="name" placeholder="Your name" />
+            <input required name="email" placeholder="Your email" type="email" />
+            <textarea required name="message" placeholder="Message" rows="5"></textarea>
+            <button type="submit" class="btn btn-primary">Send</button>
+          </form>
+          <div class="contact-quick">
+            <a class="btn btn-outline" href="mailto:chitrashreek0419@gmail.com">Email Directly</a>
+            <a class="btn btn-outline" href="tel:+917411422691">Call</a>
+          </div>
+          <p class="contact-note">✉️ This form opens WhatsApp with your message ready to send to +91 74114 22691. If WhatsApp does not open, use the Email button.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div id="footer-text"></div>
+    </footer>
+  </div>
+
+  <script>
+    function handleForm(e) {
+      e.preventDefault();
+      const data = new FormData(e.target);
+      const name = data.get("name");
+      const email = data.get("email");
+      const message = data.get("message");
+
+      const text = `Contact Form Submission:%0A%0AName: ${encodeURIComponent(name)}%0AEmail: ${encodeURIComponent(email)}%0A%0AMessage:%0A${encodeURIComponent(message)}`;
+      const waUrl = `https://wa.me/917411422691?text=${text}`;
+
+      window.open(waUrl, "_blank");
+      alert("Your message is ready in WhatsApp. Please send it from there to complete the contact.");
+    }
+
+    document.getElementById("footer-text").textContent = "© " + new Date().getFullYear() + " Chitra Shree K . Built with HTML & CSS";
+  </script>
+</body>
+</html>
